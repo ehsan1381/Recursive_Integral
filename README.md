@@ -14,3 +14,7 @@ This is program of the second problem.
 - [ ] Describe reason behind choosing to write RecurrenceRelation as an individual function and not
   an inline
     This enables us to individually test and debug this portion of the program.
+
+- [ ] Add problem statement
+- [ ] Main decisions
+    Choice of language, variable types, programming method, etc. 

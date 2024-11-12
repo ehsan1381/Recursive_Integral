@@ -39,6 +39,7 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
 end % Sequence
 
 
+
 % Compute boundary conditions
 function [I_0, I_1 ] = BoundaryConditions(a)
     % Initialize common values

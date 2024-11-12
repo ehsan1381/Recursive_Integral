@@ -14,7 +14,7 @@
 function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     % valideate argument types and set their default value
     arguments
-        a (1, 1) double = 1
+        a (1, 1) {double = 1
         n (1, 1) double = 10
     end
     
@@ -29,10 +29,10 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     Sequence([1, 2]) = [OddIndex, EvenIndex];
 
     % Recursive algorithm
-    for index = 3:2:n
-        EvenIndex = RecurrenceRelation( a, index + 1 , EvenIndex );
-        OddIndex = RecurrenceRelation( a, index, OddIndex );
-        Sequence( [index, index + 1 ] ) = [EvenIndex, OddIndex];
+    for index = 3:n
+        TempIntegral = RecurrenceRelation( a, index , Sequence(index - 1) );
+
+        Sequence( index ) = TempIntegral;
 
     end % for
     Runtime = toc;
@@ -60,6 +60,6 @@ end % BoundaryConditionsi
 
 
 % Compute the next element
-function [I_n] = RecurrenceRelation(a, n, I_n_2)
-    I_n = 1 / ( 2*n - 1 ) - a * I_n_2;
+function [I_n] = RecurrenceRelation(a, n, I_n_1)
+    I_n = 1 / ( 2*n - 1 ) - a * I_n_1;
 end %RecurrenceRelation

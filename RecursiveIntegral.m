@@ -29,9 +29,9 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     Sequence([1, 2]) = [EvenIndex, OddIndex];
 
     % Recursive algorithm
-    for index = [2:2:n]
-        EvenIndex = RecurrenceRelation( a, index , EvenIndex );
-        OddIndex = RecurrenceRelation( a, index + 1, OddIndex );
+    for index = 3:2:n
+        EvenIndex = RecurrenceRelation( a, index + 1 , EvenIndex );
+        OddIndex = RecurrenceRelation( a, index, OddIndex );
         Sequence( [index, index + 1 ] ) = [EvenIndex, OddIndex];
 
     end % for
@@ -39,22 +39,20 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
 end % Sequence
 
 
-
 % Compute boundary conditions
-function [I_0, I_1 ] = BoundaryConditions(a)
+function [I_1, I_2 ] = BoundaryConditions(a)
     % Initialize common values
     SquareRootA = sqrt(a);
     InvereseSquareRootA = 1 / SquareRootA;
     ArctanInverseSquareRootA = atan(InvereseSquareRootA);
 
     % compute boundary conditions
-    I_0 = InvereseSquareRootA * ArctanInverseSquareRootA;
-    I_1 = 1 - ArctanInverseSquareRootA * SquareRootA;
 
+    I_1 = 1 - ArctanInverseSquareRootA * SquareRootA;
+    I_2 = ArctanInverseSquareRootA * sqrt(a^3) - a +1/3;
 
 
 end % BoundaryConditionsi
-
 
 
 

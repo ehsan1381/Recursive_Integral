@@ -26,7 +26,7 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
 
     % Compute and add the first 2 elements (the boundary conditions)
     [EvenIndex, OddIndex] = BoundaryConditions(a);
-    Sequence([1, 2]) = [I_0, I_1];
+    Sequence([1, 2]) = [EvenIndex, OddIndex];
 
     % Recursive algorithm
     for index = [2:2:n]
@@ -44,7 +44,7 @@ function [I_0, I_1 ] = BoundaryConditions(a)
     % Initialize common values
     SquareRootA = sqrt(a);
     InvereseSquareRootA = 1 / SquareRootA;
-    ArctanInverseSquareRootA = arctan(InvereseSquareRootA);
+    ArctanInverseSquareRootA = atan(InvereseSquareRootA);
 
     % compute boundary conditions
     I_0 = InvereseSquareRootA * ArctanInverseSquareRootA;

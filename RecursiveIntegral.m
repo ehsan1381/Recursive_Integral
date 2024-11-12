@@ -26,7 +26,7 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
 
     % Compute and add the first 2 elements (the boundary conditions)
     [EvenIndex, OddIndex] = BoundaryConditions(a);
-    Sequence([1, 2]) = [EvenIndex, OddIndex];
+    Sequence([1, 2]) = [OddIndex, EvenIndex];
 
     % Recursive algorithm
     for index = 3:2:n

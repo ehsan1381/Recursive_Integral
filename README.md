@@ -18,3 +18,5 @@ This is program of the second problem.
 - [ ] Add problem statement
 - [ ] Main decisions
     Choice of language, variable types, programming method, etc. 
+
+

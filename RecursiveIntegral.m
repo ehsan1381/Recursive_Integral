@@ -25,11 +25,17 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     Sequence = zeros([n, 1]);
 
     % Compute and add the first 2 elements (the boundary conditions)
-    [I_0, I_1] = BoundaryConditions(a);
+    [EvenIndex, OddIndex] = BoundaryConditions(a);
     Sequence([1, 2]) = [I_0, I_1];
 
     % Recursive algorithm
+    for index = [2:2:n]
+        EvenIndex = RecurrenceRelation( a, index , EvenIndex );
+        OddIndex = RecurrenceRelation( a, index + 1, OddIndex );
+        Sequence( [index, index + 1 ] ) = [EvenIndex, OddIndex];
 
+    end % for
+    Runtime = toc;
 end % Sequence
 
 

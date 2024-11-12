@@ -14,8 +14,8 @@
 function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     % valideate argument types and set their default value
     arguments
-        a (1, 1) {mustBeNumeric} = 1
-        n (1, 1) int64 = 10
+        a (1, 1) double = 1
+        n (1, 1) double = 10
     end
     
     % initialize timer to track program performance

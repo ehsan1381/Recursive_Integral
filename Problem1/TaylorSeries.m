@@ -13,6 +13,14 @@
 
 % TASKS
 % - [ ] Decide on which function to set as default
+%
+
+% Notes
+% - sym2poly to convert from sybolic to polynomial
+% - polyval to compute value
+% - subs to substitute value to sym object
+%
+%
 
 
 
@@ -30,14 +38,15 @@ NoTermsUpdated = (NoTerms ~= 5);
 
 % In case fun was not changed
 if ~funUpdated 
-
+    TaylorPoly = [0.041666666666667,0.166666666666667,0.500000000000000,1,1];
 
 
 
 
 % In case fun was changed
 else
-
+    % Computed coefficients using built it taylor series expansion function
+    
 
 end % if funUpdated
 

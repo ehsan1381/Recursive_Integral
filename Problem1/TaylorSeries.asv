@@ -45,8 +45,6 @@ end % if funUpdated
 % In case Number of terms was not changed
 if ~NoTermsUpdated
 
-
-% In case Number of terms was changed
 else
 
 end % if NoTermsUpdated

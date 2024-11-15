@@ -1,19 +1,6 @@
 % Function to compute taylor series when requested but return a default
 % without computing it every time
 % Arguments:
-%       fun                  can be either "exp" or "log"
-%       NoTerms        can be positive integer
-% 
-% 
-% 
-% 
-% 
-
-
-
-% TASKS
-% - [ ] Decide on which function to set as default
-%
 
 % Notes
 % - sym2poly to convert from sybolic to polynomial

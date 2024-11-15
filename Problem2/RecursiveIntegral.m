@@ -19,6 +19,12 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
         n (1, 1) double = 10
     end
     
+    % to prevent some errors, check for n being integer number
+    if int64(n) ~= n
+	disp("The argument n must be an integer number");
+	return ;
+    end % if    
+
     % initialize timer to track program performance
     tic;
     
@@ -28,6 +34,8 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     % Compute and add the first 2 elements (the boundary conditions)
     [OddIndex, EvenIndex] = BoundaryConditions(a);
     Sequence([1, 2]) = [OddIndex, EvenIndex];
+
+    
 
     % Recursive algorithm
     for index = 3:2:n

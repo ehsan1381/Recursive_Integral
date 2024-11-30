@@ -18,16 +18,21 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
         a (1, 1) double = 1
         n (1, 1) double = 10
     end
-    
+
+    % check if the integral converges for given a
+    if a <= 0 && a >= -1
+        disp("Integral is divergent for this given a");
+    end % if
+
     % to prevent some errors, check for n being integer number
     if int64(n) ~= n
-	disp("The argument n must be an integer number");
-	return ;
-    end % if    
+        disp("The argument n must be an integer number");
+        return;
+    end % if
 
     % initialize timer to track program performance
     tic;
-    
+
     % initialize array of elements. This array is part of the program output
     Sequence = zeros([n, 1]);
 
@@ -35,7 +40,7 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
     [OddIndex, EvenIndex] = BoundaryConditions(a);
     Sequence([1, 2]) = [OddIndex, EvenIndex];
 
-    
+
 
     % Recursive algorithm
     for index = 3:2:n
@@ -50,7 +55,7 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
         Sequence( [index, index + 1 ] ) = [OddIndex, EvenIndex];
 
     end % for
-    
+
     % Stop the clock and store runtime
     Runtime = toc;
 

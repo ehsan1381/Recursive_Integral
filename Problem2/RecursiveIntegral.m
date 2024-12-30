@@ -10,16 +10,12 @@
 % sequence elements to be computed.
 
 
-% main body
 function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
-
-    % valideate argument types and set their default value
     arguments
         a (1, 1) double = 1
         n (1, 1) double = 10
     end
 
-    % check if the integral converges for given a
     if a <= 0 && a >= -1
         disp("Integral is divergent for this given a");
     end % if
@@ -30,60 +26,31 @@ function [ Sequence, Runtime ] = RecursiveIntegral(a, n)
         return;
     end % if
 
-    % initialize timer to track program performance
     tic;
 
-    % initialize array of elements. This array is part of the program output
     Sequence = zeros([n, 1]);
 
-    % Compute and add the first 2 elements (the boundary conditions)
-    [OddIndex, EvenIndex] = BoundaryConditions(a);
-    Sequence([1, 2]) = [OddIndex, EvenIndex];
+    I_n = BoundaryCondition(a, n);
+    Sequence(n) = I_n;
 
-
-
-    % Recursive algorithm
-    for index = 3:2:n
-
-        % Compute the element on the odd index
-        OddIndex = RecurrenceRelation( a, index, EvenIndex );
-
-        % Compute the element on the even index
-        EvenIndex = RecurrenceRelation( a, index + 1 , OddIndex );
-
-        % Add both to the Sequence array
-        Sequence( [index, index + 1 ] ) = [OddIndex, EvenIndex];
-
+    for i=1:n-1
+        I_n = RecurrenceRelation(a, n-i+1, I_n);
+        Sequence(n-i) = I_n;
     end % for
 
-    % Stop the clock and store runtime
     Runtime = toc;
 
 end % Sequence
 
 
 
-
-% Compute boundary conditions
-function [I_1, I_2 ] = BoundaryConditions(a)
-
-    % Initialize common values
-    SquareRootA = sqrt(a);
-    InvereseSquareRootA = 1 / SquareRootA;
-    ArctanInverseSquareRootA = atan(InvereseSquareRootA);
-
-    % Compute boundary conditions
-    I_1 = 1 - ArctanInverseSquareRootA * SquareRootA;
-    I_2 = ArctanInverseSquareRootA * sqrt(a^3) - a +1/3;
-
-
+function [I_n ] = BoundaryCondition(a, n)
+  F = @(n)(integral(@(x)(x.^(2*n)./(x.^2+a)),0,1));
+  I_n = F(n);
 end % BoundaryConditionsi
 
+function [I_n] = RecurrenceRelation(a, n, I_n)
 
-
-% Compute the next element
-function [I_n] = RecurrenceRelation(a, n, I_n_1)
-
-    I_n = 1 / ( 2*n - 1 ) - a * I_n_1;
+    I_n = 1/a * (1/(2*n-1) - I_n);
 
 end %RecurrenceRelation
